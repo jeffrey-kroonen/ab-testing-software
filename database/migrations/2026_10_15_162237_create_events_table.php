@@ -24,6 +24,10 @@ return new class () extends Migration {
                 ->constrained()
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
+
+            // Key
+
+            $table->index('visitor_id');
         });
     }
 };
