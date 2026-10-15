@@ -9,6 +9,7 @@ use Database\Factories\ExperimentFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Experiment extends Model
 {
@@ -33,6 +34,13 @@ class Experiment extends Model
     {
         return $this->belongsTo(
             related: Site::class,
+        );
+    }
+
+    public function variants(): HasMany
+    {
+        return $this->hasMany(
+            related: Variant::class,
         );
     }
 }
