@@ -8,6 +8,7 @@ use Database\Factories\SiteFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Site extends Model
 {
@@ -20,6 +21,13 @@ class Site extends Model
     {
         return $this->belongsTo(
             related: User::class,
+        );
+    }
+
+    public function experiments(): HasMany
+    {
+        return $this->hasMany(
+            related: Experiment::class,
         );
     }
 }
