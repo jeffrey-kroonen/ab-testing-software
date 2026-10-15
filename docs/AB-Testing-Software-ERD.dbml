@@ -1,0 +1,95 @@
+Table users [headercolor: #175e7a] {
+	id integer [ pk, increment, not null ]
+	name varchar(255) [ not null ]
+	email varchar(255) [ not null ]
+	password varchar(255) [ not null ]
+	created_at timestamp
+	updated_at timestamp
+}
+
+Table sites [headercolor: #175e7a] {
+	id integer [ pk, increment, not null ]
+	name varchar(255) [ not null ]
+	domain varchar(255) [ not null ]
+	created_at timestamp
+	updated_at timestamp
+	user_id integer
+}
+
+Table experiments [headercolor: #175e7a] {
+	id integer [ pk, increment, not null ]
+	name varchar(255) [ not null ]
+	description text(65535)
+	key varchar(255) [ not null, unique ]
+	status varchar(255) [ not null, note: 'draft|running|paused|completed' ]
+	started_at datetime
+	ended_at datetime
+	created_at timestamp
+	updated_at timestamp
+	site_id integer [ not null ]
+
+	indexes {
+		(key) [ name: 'experiments_index_0' ]
+	}
+}
+
+Table assignments [headercolor: #175e7a] {
+	id integer [ pk, increment, not null ]
+	visitor_id varchar(255)
+	assigned_at datetime
+	variant_id integer [ not null ]
+	experiment_id integer [ not null ]
+
+	indexes {
+		(visitor_id) [ name: 'assignments_index_0' ]
+	}
+}
+
+Table variants [headercolor: #175e7a] {
+	id integer [ pk, increment, not null ]
+	name varchar(255) [ not null ]
+	url varchar(500) [ not null ]
+	weight integer
+	is_control tinyint [ not null ]
+	created_at timestamp
+	updated_at timestamp
+	experiments_id integer
+}
+
+Table events [headercolor: #175e7a] {
+	id integer [ pk, increment, not null ]
+	visitor_id varchar(255) [ not null ]
+	event_type varchar(255) [ not null, note: 'exposure|conversion' ]
+	url varchar(255) [ not null ]
+	created_at timestamp
+	updated_at timestamp
+	variant_id integer [ not null ]
+
+	indexes {
+		(visitor_id) [ name: 'events_index_0' ]
+	}
+}
+
+Ref fk_sites_user_id_users {
+	sites.user_id > users.id [ delete: no action, update: no action ]
+}
+
+Ref fk_experiments_site_id_sites {
+	experiments.site_id > sites.id [ delete: no action, update: no action ]
+}
+
+Ref fk_variants_experiments_id_experiments {
+	variants.experiments_id > experiments.id [ delete: no action, update: no action ]
+}
+
+Ref fk_assignments_variant_id_variants {
+	assignments.variant_id > variants.id [ delete: no action, update: no action ]
+}
+
+Ref fk_assignments_experiment_id_experiments {
+	assignments.experiment_id > experiments.id [ delete: no action, update: no action ]
+}
+
+Ref fk_events_variant_id_variants {
+	events.variant_id > variants.id [ delete: no action, update: no action ]
+}
