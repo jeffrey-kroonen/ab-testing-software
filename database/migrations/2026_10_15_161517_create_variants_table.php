@@ -25,6 +25,13 @@ return new class () extends Migration {
                 ->constrained()
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
+
+            // Keys
+
+            $table->unique([
+                'url',
+                'experiment_id',
+            ]);
         });
     }
 };
