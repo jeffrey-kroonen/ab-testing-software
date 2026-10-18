@@ -1,0 +1,16 @@
+name: Create a site
+method: POST
+url: '{{baseUrl}}/sites'
+headers:
+  Accept: application/json
+  Content-Type: application/json
+auth:
+  type: bearer
+  token: '{{apiToken}}'
+body:
+  type: json
+  content: |-
+    {
+      "name": "The fruit store",
+      "domain": "fruitstore.com"
+    }

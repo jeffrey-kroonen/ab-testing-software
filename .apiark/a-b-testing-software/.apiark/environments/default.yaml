@@ -1,0 +1,5 @@
+name: Default
+variables:
+  baseUrl: http://ab-testing-software.test/api
+secrets:
+  - apiToken
