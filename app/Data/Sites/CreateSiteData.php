@@ -6,6 +6,7 @@ namespace App\Data\Sites;
 
 use App\Models\User;
 use Illuminate\Contracts\Support\Arrayable;
+use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 use Override;
 
@@ -25,6 +26,38 @@ class CreateSiteData implements Arrayable
             domain: $request->validated('domain'),
             user: $request->user(),
         );
+    }
+
+    public static function fromArray(
+        User $user,
+        array $attributes,
+    ): static {
+        return new self(
+            name: $attributes['name'],
+            domain: $attributes['domain'],
+            user: $user,
+        );
+    }
+
+    /**
+     * @return array<string, ValidationRule|array<mixed>|string>
+     */
+    public static function rules(): array
+    {
+        return [
+            'name' => [
+                'required',
+                'string',
+                'min:2',
+                'max:150',
+            ],
+            'domain' => [
+                'required',
+                'active_url',
+                'min:2',
+                'max:150',
+            ],
+        ];
     }
 
     #[Override]
