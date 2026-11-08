@@ -34,7 +34,9 @@ class CreateVariant extends Component
         int $siteId,
         int $experimentId,
         bool $isControl
-    ) {
+    ): void {
+        // TODO Maybe simplify this, by checking if the experiment is related to the user.
+        // Use the relate through method from Laravel.
         $site = Site::query()->findOrFail($siteId);
 
         $experiment = $site
