@@ -5,7 +5,9 @@ declare(strict_types=1);
 namespace App\Models;
 
 use App\Enums\Experiments\Status;
+use Carbon\CarbonImmutable;
 use Database\Factories\ExperimentFactory;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -17,13 +19,13 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property string|null $description
  * @property string $key
  * @property Status $status
- * @property \Carbon\CarbonImmutable|null $started_at
- * @property \Carbon\CarbonImmutable|null $ended_at
- * @property \Carbon\CarbonImmutable|null $created_at
- * @property \Carbon\CarbonImmutable|null $updated_at
+ * @property CarbonImmutable|null $started_at
+ * @property CarbonImmutable|null $ended_at
+ * @property CarbonImmutable|null $created_at
+ * @property CarbonImmutable|null $updated_at
  * @property int $site_id
- * @property-read \App\Models\Site $site
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Variant> $variants
+ * @property-read Site $site
+ * @property-read Collection<int, Variant> $variants
  * @property-read int|null $variants_count
  * @method static \Database\Factories\ExperimentFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Experiment newModelQuery()

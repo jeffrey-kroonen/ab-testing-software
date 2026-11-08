@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use Carbon\CarbonImmutable;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -15,11 +17,11 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property string $url
  * @property int|null $weight
  * @property bool $is_control
- * @property \Carbon\CarbonImmutable|null $created_at
- * @property \Carbon\CarbonImmutable|null $updated_at
+ * @property CarbonImmutable|null $created_at
+ * @property CarbonImmutable|null $updated_at
  * @property int $experiment_id
- * @property-read \App\Models\Experiment $experiment
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Event> $variants
+ * @property-read Experiment $experiment
+ * @property-read Collection<int, Event> $variants
  * @property-read int|null $variants_count
  * @method static \Database\Factories\VariantFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Variant newModelQuery()

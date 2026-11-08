@@ -8,7 +8,6 @@ use App\Models\User;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
-use Override;
 
 class CreateSiteData implements Arrayable
 {
@@ -60,7 +59,6 @@ class CreateSiteData implements Arrayable
         ];
     }
 
-    #[Override]
     public function toArray(): array
     {
         return [

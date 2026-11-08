@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Livewire\Forms\Sites;
 
 use App\Data\Sites\CreateSiteData;
+use App\Models\Site;
 use App\Services\SiteService;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Form;
@@ -19,13 +20,13 @@ class CreateSiteForm extends Form
         return CreateSiteData::rules();
     }
 
-    public function save(): void
+    public function store(): Site
     {
         $attributes = $this->validate();
 
         $service = app(SiteService::class);
 
-        $service->create(
+        return $service->create(
             CreateSiteData::fromArray(
                 user: Auth::user(),
                 attributes: $attributes,

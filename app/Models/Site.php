@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use Carbon\CarbonImmutable;
 use Database\Factories\SiteFactory;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -14,12 +16,12 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property int $id
  * @property string $name
  * @property string $domain
- * @property \Carbon\CarbonImmutable|null $created_at
- * @property \Carbon\CarbonImmutable|null $updated_at
+ * @property CarbonImmutable|null $created_at
+ * @property CarbonImmutable|null $updated_at
  * @property int $user_id
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Experiment> $experiments
+ * @property-read Collection<int, Experiment> $experiments
  * @property-read int|null $experiments_count
- * @property-read \App\Models\User $user
+ * @property-read User $user
  * @method static \Database\Factories\SiteFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Site newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Site newQuery()

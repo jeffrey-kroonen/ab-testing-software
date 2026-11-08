@@ -21,11 +21,15 @@
 
                 <flux:table.rows>
                     @foreach ($sites as $site)
-                    <flux:table.row :key="$site->id">
-                        <flux:table.cell variant="strong">{{ $site->name }}</flux:table.cell>
-                        <flux:table.cell>{{ $site->domain }}</flux:table.cell>
-                        <flux:table.cell>{{ $site->created_at->format('d-m-Y') }}</flux:table.cell>
-                    </flux:table.row>
+                        <flux:table.row
+                            :key="$site->id"
+                            class="cursor-pointer hover:bg-red-50/25 dark:hover:bg-red-950/25"
+                            x-on:click="window.location.href = '{{ route('sites.show', ['site' => $site->id]) }}'"
+                        >
+                            <flux:table.cell variant="strong">{{ $site->name }}</flux:table.cell>
+                            <flux:table.cell>{{ $site->domain }}</flux:table.cell>
+                            <flux:table.cell>{{ $site->created_at->format('d-m-Y') }}</flux:table.cell>
+                        </flux:table.row>
                     @endforeach
                 </flux:table.rows>
             </flux:table>
@@ -34,7 +38,7 @@
 
     <flux:modal name="add-site" class="md:w-96">
         <div>
-            <form wire:submit="createSite" class="space-y-6">
+            <form wire:submit="storeSite" class="space-y-6">
                 <div>
                     <flux:heading size="lg">Add site</flux:heading>
                     <flux:text class="mt-2">Create a new site to setup A/B-testing.</flux:text>

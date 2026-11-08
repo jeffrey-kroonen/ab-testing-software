@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use Carbon\CarbonImmutable;
 use Database\Factories\AssignmentFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -12,12 +13,12 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 /**
  * @property int $id
  * @property string $visitor_id
- * @property \Carbon\CarbonImmutable|null $created_at
- * @property \Carbon\CarbonImmutable|null $updated_at
+ * @property CarbonImmutable|null $created_at
+ * @property CarbonImmutable|null $updated_at
  * @property int $variant_id
  * @property int $experiment_id
- * @property-read \App\Models\Experiment $experiment
- * @property-read \App\Models\Variant $variant
+ * @property-read Experiment $experiment
+ * @property-read Variant $variant
  * @method static \Database\Factories\AssignmentFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Assignment newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Assignment newQuery()

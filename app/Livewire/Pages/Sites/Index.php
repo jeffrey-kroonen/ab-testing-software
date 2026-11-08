@@ -23,9 +23,9 @@ class Index extends Component
         $this->sites = $service->get($request->user());
     }
 
-    public function createSite()
+    public function storeSite(): void
     {
-        $this->form->save();
+        $this->form->store();
 
         $this->redirectRoute('sites.index');
     }
