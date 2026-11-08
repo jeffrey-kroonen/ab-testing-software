@@ -1,5 +1,7 @@
 name: Default
 variables:
   baseUrl: http://ab-testing-software.test/api
+  siteId: 85a8605c-0482-46a5-aa3e-939236b08b48
 secrets:
-  - apiToken
+- apiToken
+scope: shared

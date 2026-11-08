@@ -1,0 +1,17 @@
+name: Create an assignment
+method: POST
+url: '{{baseUrl}}/assignments'
+headers:
+  Accept: application/json
+  AB-Testing-Site-ID: '{{siteId}}'
+  Content-Type: application/json
+auth:
+  type: bearer
+  token: '{{apiToken}}'
+body:
+  type: json
+  content: |-
+    {
+      "visitor_id": "das1d1f3aezxcqwfsdf",
+      "experiment_key": "tracy-kutch"
+    }

@@ -12,6 +12,7 @@ class CreateVariantData implements Arrayable
 {
     public function __construct(
         public string $name,
+        public string $key,
         public string $url,
         public ?int $weight,
         public bool $isControl,
@@ -27,6 +28,7 @@ class CreateVariantData implements Arrayable
 
         return new self(
             name: $attributes['name'],
+            key: $attributes['key'],
             url: $attributes['url'],
             weight: filled($weight) ? $weight : null,
             isControl: $attributes['is_control'],
@@ -41,6 +43,12 @@ class CreateVariantData implements Arrayable
     {
         return [
             'name' => [
+                'required',
+                'string',
+                'min:2',
+                'max:150',
+            ],
+            'key' => [
                 'required',
                 'string',
                 'min:2',
@@ -69,6 +77,7 @@ class CreateVariantData implements Arrayable
     {
         return [
             'name' => $this->name,
+            'key' => $this->key,
             'url' => $this->url,
             'weight' => $this->weight,
             'is_control' => $this->isControl,

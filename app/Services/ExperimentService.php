@@ -11,6 +11,12 @@ use Illuminate\Support\Arr;
 
 class ExperimentService
 {
+    public function findExperimentByKey(string $key): ?Experiment
+    {
+        return Experiment::query()
+            ->firstWhere('key', $key);
+    }
+
     public function create(CreateExperimentData $data): Experiment
     {
         $attributes = Arr::only($data->toArray(), [

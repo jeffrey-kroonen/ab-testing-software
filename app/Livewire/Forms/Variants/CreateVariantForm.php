@@ -14,6 +14,7 @@ use Livewire\Form;
 class CreateVariantForm extends Form
 {
     public string $name = '';
+    public string $key = '';
     public string $url = '';
     public ?int $weight = 50;
     public bool $is_control = true;

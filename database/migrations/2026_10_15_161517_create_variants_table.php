@@ -13,6 +13,7 @@ return new class () extends Migration {
             $table->id();
 
             $table->string('name');
+            $table->string('key');
             $table->string('url');
             $table->integer('weight')->nullable();
             $table->boolean('is_control');

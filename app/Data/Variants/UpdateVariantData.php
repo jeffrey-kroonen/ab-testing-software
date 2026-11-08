@@ -12,6 +12,7 @@ class UpdateVariantData implements Arrayable
 {
     public function __construct(
         public string $name,
+        public string $key,
         public string $url,
         public ?int $weight,
         public bool $isControl,
@@ -26,10 +27,11 @@ class UpdateVariantData implements Arrayable
         $weight = $attributes['weight'];
 
         return new self(
-            name: $attributes['name'],
-            url: $attributes['url'],
-            weight: filled($weight) ? $weight : null,
-            isControl: $attributes['is_control'],
+            name: $attributes['name'] ?? $variant->name,
+            key: $attributes['key'] ?? $variant->key,
+            url: $attributes['url'] ?? $variant->url,
+            weight: filled($weight) ? $weight : $variant->weight,
+            isControl: $attributes['is_control'] ?? $variant->is_control,
             variant: $variant,
         );
     }
@@ -46,6 +48,7 @@ class UpdateVariantData implements Arrayable
     {
         return [
             'name' => $this->name,
+            'key' => $this->key,
             'url' => $this->url,
             'weight' => $this->weight,
             'is_control' => $this->isControl,

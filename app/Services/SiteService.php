@@ -17,9 +17,16 @@ class SiteService
         return $user->sites()->get();
     }
 
+    public function findByClientId(string $clientId): ?Site
+    {
+        return Site::query()
+            ->firstWhere('client_id', $clientId);
+    }
+
     public function create(CreateSiteData $data): Site
     {
         $attributes = Arr::only($data->toArray(), [
+            'client_id',
             'name',
             'domain',
         ]);

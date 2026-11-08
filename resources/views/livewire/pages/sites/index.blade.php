@@ -14,6 +14,7 @@
 
             <flux:table bleed container:class="mt-6">
                 <flux:table.columns>
+                    <flux:table.column>Client ID</flux:table.column>
                     <flux:table.column>Site</flux:table.column>
                     <flux:table.column>Domain</flux:table.column>
                     <flux:table.column>Created At</flux:table.column>
@@ -26,7 +27,8 @@
                             class="cursor-pointer hover:bg-red-50/25 dark:hover:bg-red-950/25"
                             x-on:click="window.location.href = '{{ route('sites.show', ['site' => $site->id]) }}'"
                         >
-                            <flux:table.cell variant="strong">{{ $site->name }}</flux:table.cell>
+                            <flux:table.cell variant="strong">{{ $site->client_id }}</flux:table.cell>
+                            <flux:table.cell>{{ $site->name }}</flux:table.cell>
                             <flux:table.cell>{{ $site->domain }}</flux:table.cell>
                             <flux:table.cell>{{ $site->created_at->format('d-m-Y') }}</flux:table.cell>
                         </flux:table.row>
