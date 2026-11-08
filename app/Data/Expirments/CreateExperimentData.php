@@ -24,7 +24,7 @@ class CreateExperimentData implements Arrayable
     public static function fromArray(
         Site $site,
         array $attributes,
-    ): static {
+    ): CreateExperimentData {
         $description = $attributes['description'];
 
         return new self(

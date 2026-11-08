@@ -83,6 +83,9 @@ class User extends Authenticatable implements MustVerifyEmail, PasskeyUser
 
     // Relations
 
+    /**
+     * @return HasMany <Site, $this>
+     */
     public function sites(): HasMany
     {
         return $this->hasMany(

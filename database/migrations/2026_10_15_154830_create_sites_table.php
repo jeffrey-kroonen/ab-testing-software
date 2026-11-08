@@ -12,6 +12,8 @@ return new class () extends Migration {
         Schema::create('sites', function (Blueprint $table) {
             $table->id();
 
+            $table->uuid('client_id');
+
             $table->string('name');
             $table->string('domain');
 

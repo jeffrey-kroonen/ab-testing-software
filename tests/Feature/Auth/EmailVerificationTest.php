@@ -8,14 +8,19 @@ use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\URL;
 use Laravel\Fortify\Features;
 
+use function Pest\Laravel\actingAs;
+
+use Tests\TestCase;
+
 beforeEach(function () {
+    /** @var TestCase $this */
     $this->skipUnlessFortifyHas(Features::emailVerification());
 });
 
 test('email verification screen can be rendered', function () {
     $user = User::factory()->unverified()->create();
 
-    $response = $this->actingAs($user)->get(route('verification.notice'));
+    $response = actingAs($user)->get(route('verification.notice'));
 
     $response->assertOk();
 });
@@ -23,7 +28,7 @@ test('email verification screen can be rendered', function () {
 test('unverified users are redirected to the email verification prompt', function () {
     $user = User::factory()->unverified()->create();
 
-    $response = $this->actingAs($user)->get(route('appearance.edit'));
+    $response = actingAs($user)->get(route('appearance.edit'));
 
     $response->assertRedirect(route('verification.notice'));
 });
@@ -39,7 +44,7 @@ test('email can be verified', function () {
         ['id' => $user->id, 'hash' => sha1($user->email)],
     );
 
-    $response = $this->actingAs($user)->get($verificationUrl);
+    $response = actingAs($user)->get($verificationUrl);
 
     Event::assertDispatched(Verified::class);
 
@@ -56,7 +61,7 @@ test('email is not verified with invalid hash', function () {
         ['id' => $user->id, 'hash' => sha1('wrong-email')],
     );
 
-    $this->actingAs($user)->get($verificationUrl);
+    actingAs($user)->get($verificationUrl);
 
     expect($user->fresh()->hasVerifiedEmail())->toBeFalse();
 });
@@ -74,7 +79,7 @@ test('already verified user visiting verification link is redirected without fir
         ['id' => $user->id, 'hash' => sha1($user->email)],
     );
 
-    $this->actingAs($user)->get($verificationUrl)
+    actingAs($user)->get($verificationUrl)
         ->assertRedirect(route('dashboard', absolute: false) . '?verified=1');
 
     expect($user->fresh()->hasVerifiedEmail())->toBeTrue();

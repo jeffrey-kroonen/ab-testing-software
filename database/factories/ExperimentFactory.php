@@ -15,11 +15,9 @@ use Illuminate\Support\Str;
  */
 class ExperimentFactory extends Factory
 {
-    /**
-     * @return array<string, mixed>
-     */
     public function definition(): array
     {
+        /** @var ?Carbon $startedAt */
         $startedAt = $this->faker
             ->optional()
             ->dateTimeBetween(

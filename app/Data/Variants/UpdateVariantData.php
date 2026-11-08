@@ -22,7 +22,7 @@ class UpdateVariantData implements Arrayable
     public static function fromArray(
         Variant $variant,
         array $attributes,
-    ): static {
+    ): UpdateVariantData {
         $weight = $attributes['weight'];
 
         return new self(

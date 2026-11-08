@@ -12,12 +12,10 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class SiteFactory extends Factory
 {
-    /**
-     * @return array<string, mixed>
-     */
     public function definition(): array
     {
         return [
+            'client_id' => $this->faker->uuid(),
             'name' => $this->faker->company(),
             'domain' => $this->faker->domainName(),
         ];

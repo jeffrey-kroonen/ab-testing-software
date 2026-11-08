@@ -6,6 +6,7 @@ namespace App\Data\Variants;
 
 use App\Models\Experiment;
 use Illuminate\Contracts\Support\Arrayable;
+use Illuminate\Contracts\Validation\ValidationRule;
 
 class CreateVariantData implements Arrayable
 {
@@ -21,7 +22,7 @@ class CreateVariantData implements Arrayable
     public static function fromArray(
         Experiment $experiment,
         array $attributes,
-    ): static {
+    ): CreateVariantData {
         $weight = $attributes['weight'];
 
         return new self(

@@ -41,6 +41,9 @@ class Site extends Model
 
     // Relations
 
+    /**
+     * @return BelongsTo<User, $this>
+     */
     public function user(): BelongsTo
     {
         return $this->belongsTo(
@@ -48,6 +51,9 @@ class Site extends Model
         );
     }
 
+    /**
+     * @return HasMany<Experiment, $this>
+     */
     public function experiments(): HasMany
     {
         return $this->hasMany(

@@ -8,19 +8,22 @@ use App\Models\User;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Str;
 
 class CreateSiteData implements Arrayable
 {
     public function __construct(
+        public string $clientId,
         public string $name,
         public string $domain,
         public User $user,
     ) {
     }
 
-    public static function fromRequest(FormRequest $request): static
+    public static function fromRequest(FormRequest $request): CreateSiteData
     {
         return new self(
+            clientId: (string) Str::uuid(),
             name: $request->validated('name'),
             domain: $request->validated('domain'),
             user: $request->user(),
@@ -30,8 +33,9 @@ class CreateSiteData implements Arrayable
     public static function fromArray(
         User $user,
         array $attributes,
-    ): static {
+    ): CreateSiteData {
         return new self(
+            clientId: (string) Str::uuid(),
             name: $attributes['name'],
             domain: $attributes['domain'],
             user: $user,
@@ -62,6 +66,7 @@ class CreateSiteData implements Arrayable
     public function toArray(): array
     {
         return [
+            'client_id' => $this->clientId,
             'name' => $this->name,
             'domain' => $this->domain,
             'user' => $this->user->toArray(),

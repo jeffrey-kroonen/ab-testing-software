@@ -62,6 +62,9 @@ class Experiment extends Model
 
     // Relations
 
+    /**
+     * @return BelongsTo<Site, $this>
+     */
     public function site(): BelongsTo
     {
         return $this->belongsTo(
@@ -69,6 +72,9 @@ class Experiment extends Model
         );
     }
 
+    /**
+     * @return HasMany<Variant, $this>
+     */
     public function variants(): HasMany
     {
         return $this->hasMany(

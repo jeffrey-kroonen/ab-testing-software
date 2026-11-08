@@ -7,6 +7,7 @@ namespace App\Data\Expirments;
 use App\Enums\Experiments\Status;
 use App\Models\Experiment;
 use Illuminate\Contracts\Support\Arrayable;
+use Illuminate\Contracts\Validation\ValidationRule;
 
 class UpdateExperimentData implements Arrayable
 {
@@ -22,7 +23,7 @@ class UpdateExperimentData implements Arrayable
     public static function fromArray(
         Experiment $experiment,
         array $attributes,
-    ): static {
+    ): UpdateExperimentData {
         $description = $attributes['description'];
 
         return new self(
