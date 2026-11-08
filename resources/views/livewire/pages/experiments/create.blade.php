@@ -67,13 +67,8 @@
                     <flux:text>Step {{ $step }} of 3</flux:text>
                     <flux:card.actions>
                         <flux:button variant="ghost" wire:click="previous"> Cancel </flux:button>
-                        <flux:button
-                            variant="primary"
-                            type="submit"
-                            :icon="is_string($nextStep) ? 'check' : 'arrow-long-right'"
-                            :iconVariant="is_string($nextStep) ? 'mini' : 'solid'"
-                        >
-                            {{ is_string($nextStep) ? 'Complete' : "Step {$nextStep}" }}
+                        <flux:button variant="primary" type="submit" icon="arrow-long-right" iconVariant="solid">
+                            {{ "Step {$nextStep}" }}
                         </flux:button>
                     </flux:card.actions>
                 </flux:card.footer>
